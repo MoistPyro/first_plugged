@@ -1,0 +1,2 @@
+cargo run --package xtask --release -- bundle first_plugged
+Copy-Item ".\target\bundled\first_plugged.vst3\Contents\x86_64-win\first_plugged.vst3" -Destination "C:\Program Files\Steinberg\VstPlugins\first_plugged.vst3"

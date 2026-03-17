@@ -116,7 +116,9 @@ impl Plugin for Plugged {
 
 impl Plugged {
     fn wierdify(sample: f32, drive: f32) -> f32 {
-        let distortion = |x: f32| x / x.abs() * (1.0 - (-1.0 * drive * x * x / x.abs()).exp());
+        let sign = |x: f32| x / x.abs();
+        let distortion = |x: f32| sign(x) * (1.0 - (-1.0 * drive * x * sign(x)).exp());
+
         let error_correct = (1.0 - distortion(1.0)) * sample;
         distortion(sample) + error_correct
     }
